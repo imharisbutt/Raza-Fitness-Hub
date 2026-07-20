@@ -10,9 +10,12 @@ export const siteConfig = {
   tagline: "Lahore's Premium Strength & Performance Club",
   description:
     "Raza Fitness Hub is a premium strength and performance gym in Lahore. Train with expert coaches, world-class equipment, and a community built to push you further.",
-  // Placeholder production domain — swap for the client's real domain before launch.
-  url: "https://razafitnesshub.com",
+  url: "https://imharisbutt.github.io/Raza-Fitness-Hub",
   email: "ahmad.raza@rfhub.pk",
+  // Static hosting (GitHub Pages) has no backend, so the contact form posts
+  // directly to Formspree. Sign up at formspree.io, create a form, and
+  // replace this with your real endpoint (https://formspree.io/f/xxxxxxxx).
+  formspreeEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
   phoneDisplay: "+92 300 1234567",
   phoneRaw: "923001234567",
   instagram: "razafitnesshub",

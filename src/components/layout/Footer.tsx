@@ -5,7 +5,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { siteConfig, navLinks } from "@/content/siteConfig";
 import { branches } from "@/content/branches";
 import Container from "@/components/ui/Container";
-import { cn, focusRing } from "@/lib/utils";
+import { cn, focusRing, withBasePath } from "@/lib/utils";
 
 export default function Footer() {
   return (
@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="#home" className="inline-flex items-center">
               <Image
-                src="/logo.png"
+                src={withBasePath("/logo.png")}
                 alt="Raza Fitness Hub"
                 width={1349}
                 height={432}

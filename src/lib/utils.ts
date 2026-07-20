@@ -15,3 +15,12 @@ export function focusRing(offsetClass: string = "focus-visible:ring-offset-charc
     offsetClass,
   );
 }
+
+/*
+  next/image doesn't auto-prefix `src` with `basePath` (unlike next/link),
+  so hardcoded /public asset paths need this when deployed under a sub-path
+  (e.g. GitHub Pages serving from /Raza-Fitness-Hub/). No-op everywhere else.
+*/
+export function withBasePath(path: string) {
+  return `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+}

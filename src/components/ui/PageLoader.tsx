@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { withBasePath } from "@/lib/utils";
 
 const MIN_DISPLAY_MS = 650;
 
@@ -37,7 +38,7 @@ export default function PageLoader() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <Image
-              src="/logo.png"
+              src={withBasePath("/logo.png")}
               alt=""
               width={1349}
               height={432}

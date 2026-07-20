@@ -4,6 +4,8 @@ import { siteConfig } from "@/content/siteConfig";
 export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Required for static export (GitHub Pages) — this route has no dynamic input.
+export const dynamic = "force-static";
 
 export default function OpengraphImage() {
   return new ImageResponse(

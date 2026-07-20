@@ -6,6 +6,7 @@ import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { siteConfig } from "@/content/siteConfig";
+import { withBasePath } from "@/lib/utils";
 
 export default function FinalCta() {
   return (
@@ -14,7 +15,7 @@ export default function FinalCta() {
       className="relative flex min-h-[70vh] items-center overflow-hidden py-24 md:py-32"
     >
       <Image
-        src="/images/final-cta-bg.png"
+        src={withBasePath("/images/final-cta-bg.png")}
         alt="Athlete straining against battle ropes in a dramatic, dust-filled gym"
         fill
         sizes="100vw"

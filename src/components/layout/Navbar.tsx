@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { cn, focusRing } from "@/lib/utils";
+import { cn, focusRing, withBasePath } from "@/lib/utils";
 import { navLinks } from "@/content/siteConfig";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -34,7 +34,7 @@ export default function Navbar() {
         <Container className="flex h-20 items-center justify-between">
           <Link href="#home" className="flex items-center">
             <Image
-              src="/logo.png"
+              src={withBasePath("/logo.png")}
               alt="Raza Fitness Hub"
               width={1349}
               height={432}
