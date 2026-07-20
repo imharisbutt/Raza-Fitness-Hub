@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*
+  Raza Fitness Hub — design tokens.
+  Premium athletic-club look: charcoal/black base + gold accent.
+  All colors are defined here as tokens so no raw hex values live in components.
+*/
+@theme {
+  --color-charcoal-950: #0a0a0b;
+  --color-charcoal-900: #101012;
+  --color-charcoal-850: #16161a;
+  --color-charcoal-800: #1d1d22;
+  --color-charcoal-700: #2a2a31;
+  --color-charcoal-600: #3a3a44;
+
+  --color-gold-300: #f2d585;
+  --color-gold-400: #e8c05a;
+  --color-gold-500: #d4a73a;
+  --color-gold-600: #b98a26;
+
+  --color-offwhite: #f4f2ec;
+  --color-muted: #a9a69c;
+
+  --font-display: var(--font-display), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-charcoal-950);
+  color: var(--color-offwhite);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Anchored sections sit below the fixed navbar when jumped to. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+::selection {
+  background-color: var(--color-gold-500);
+  color: var(--color-charcoal-950);
+}
