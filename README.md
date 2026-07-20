@@ -2,6 +2,8 @@
 
 A single-page marketing site for Raza Fitness Hub (a premium gym in Lahore), built with **Next.js (App Router) + TypeScript + Tailwind CSS v4**.
 
+**Live site:** https://imharisbutt.github.io/Raza-Fitness-Hub/
+
 ## Getting Started
 
 ```bash
@@ -27,15 +29,20 @@ src/
 │  ├─ layout.tsx        # fonts (Bebas Neue + Inter), metadata, Navbar + Footer
 │  ├─ page.tsx          # composes all sections in order
 │  ├─ globals.css       # Tailwind + design tokens (charcoal + gold theme)
-│  └─ api/contact/      # contact-form endpoint (stub)
+│  ├─ icon.svg           # favicon
+│  ├─ opengraph-image.tsx  # generated OG/Twitter share image
+│  ├─ robots.ts          # robots.txt
+│  └─ sitemap.ts         # sitemap.xml
 ├─ components/
 │  ├─ layout/           # Navbar, MobileMenu, Footer
-│  ├─ sections/         # Hero, About, Programs, Pricing, Trainers, Testimonials, Branches, Contact
-│  ├─ ui/               # Button, Container, SectionHeading, Reveal (shared primitives)
-│  └─ forms/            # ContactForm
+│  ├─ sections/         # Hero, About, Programs, Pricing, Trainers, Testimonials, Branches, Faq, Contact, ...
+│  ├─ ui/               # Button, Container, SectionHeading, Reveal, PageLoader, AnimatedCounter (shared primitives)
+│  └─ forms/            # ContactForm (posts to Formspree)
 ├─ content/             # ← ALL placeholder copy & data lives here
 ├─ types/               # shared TypeScript types
-└─ lib/                 # cn() className helper
+└─ lib/                 # cn() className helper, focusRing(), withBasePath()
+
+.github/workflows/deploy.yml   # builds + deploys to GitHub Pages on every push to main
 ```
 
 ## Customising Content (start here)
@@ -72,7 +79,26 @@ palette stays consistent.
 
 ## Contact Form
 
-The form posts to `POST /api/contact`, which currently validates the payload and logs
-it to the server console. **Before launch**, wire up a real email service (e.g. Resend or
-Nodemailer) or a CRM in `src/app/api/contact/route.ts` so submissions actually reach the
-client. (Look for the `TODO` in that file.)
+The site is deployed as a static export (GitHub Pages has no server), so the form posts
+directly to [Formspree](https://formspree.io) instead of an internal API route. The
+endpoint lives in `content/siteConfig.ts` as `formspreeEndpoint` — **before launch**,
+sign up at formspree.io, create a form, and replace the placeholder with your real
+`https://formspree.io/f/xxxxxxxx` URL.
+
+## Deployment
+
+This site is configured to build two ways, controlled by the `GITHUB_PAGES` env var in
+`next.config.ts`:
+
+- **Normal build** (`npm run build`, used by Vercel/local) — full Next.js server build.
+- **Static export** (`GITHUB_PAGES=true npm run build`) — sets `output: "export"` and a
+  `/Raza-Fitness-Hub` `basePath` (since the site is served from a repo sub-path, not the
+  domain root), and disables Next's server-side image optimizer.
+
+`.github/workflows/deploy.yml` runs the static export build and publishes it to GitHub
+Pages automatically on every push to `main`. Enable it once under **Settings → Pages →
+Source → GitHub Actions** on the repo.
+
+Hardcoded `/public` asset paths (like the logo) must go through the `withBasePath()`
+helper in `lib/utils.ts` rather than a bare `/logo.png` string, since `next/image` doesn't
+auto-prefix `src` with `basePath` the way `next/link` does with `href`.
