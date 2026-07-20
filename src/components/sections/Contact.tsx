@@ -37,7 +37,7 @@ const contactItems = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-28 lg:py-32">
+    <section id="contact" className="bg-charcoal-900 py-20 md:py-28 lg:py-32">
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
