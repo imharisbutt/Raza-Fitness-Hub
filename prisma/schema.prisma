@@ -1,0 +1,26 @@
+// Prisma schema for Raza Fitness Hub.
+// Using SQLite for zero-setup local development — the whole database is a single
+// file (dev.db). To move to production Postgres later, change `provider` to
+// "postgresql" and point DATABASE_URL at your server; the models stay the same.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// One row per contact-form submission.
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  interest  String   @default("") // selected program; optional on the form
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}

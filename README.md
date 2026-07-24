@@ -6,7 +6,7 @@ A single-page marketing site for Raza Fitness Hub (a premium gym in Lahore), bui
 
 ## Getting Started
 
-```bash
+```bash+
 npm install
 npm run dev
 ```

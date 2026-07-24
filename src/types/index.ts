@@ -50,3 +50,15 @@ export type Branch = {
   image: string;
   mapUrl: string;
 };
+
+// Serializable shape of a saved contact submission, safe to pass from server
+// components to client components (createdAt is an ISO string, not a Date).
+export type ContactMessage = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  interest: string;
+  message: string;
+  createdAt: string;
+};

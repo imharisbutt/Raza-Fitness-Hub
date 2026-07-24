@@ -6,7 +6,6 @@ import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import { programs } from "@/content/programs";
-import { siteConfig } from "@/content/siteConfig";
 
 type FormValues = {
   name: string;
@@ -32,9 +31,10 @@ export default function ContactForm() {
   const onSubmit = async (data: FormValues) => {
     setServerError(false);
     try {
-      const res = await fetch(siteConfig.formspreeEndpoint, {
+      // Saves the submission to our database via the API route (was Formspree).
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error("Request failed");
